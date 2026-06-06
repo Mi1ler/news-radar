@@ -1,9 +1,9 @@
 {
   "version": "1.0",
   "ai": {
-    "provider": "deepseek",
-    "model": "deepseek-chat",
-    "api_key_env": "DEEPSEEK_API_KEY",
+    "provider": "doubao",
+    "model": "ep-20260606210701-pfsw7",
+    "api_key_env": "ARK_API_KEY",
     "temperature": 0.3,
     "max_tokens": 4096,
     "throttle_sec": 0,
