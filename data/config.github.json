@@ -78,6 +78,15 @@
     "time_window_hours": 24
   },
   "webhook": {
-    "enabled": false
+    "enabled": true,
+    "url_env": "HORIZON_WEBHOOK_URL",
+    "delivery": "summary",
+    "overview_position": "first",
+    "platform": "feishu",
+    "layout": "collapsible",
+    "fallback_layout": "markdown",
+    "languages": null,
+    "request_body": {},
+    "headers": ""
   }
 }
