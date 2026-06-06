@@ -1,109 +1,73 @@
 {
   "version": "1.0",
   "ai": {
-    "provider": "openai",
-    "model": "gpt-4",
-    "api_key_env": "OPENAI_API_KEY",
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "api_key_env": "DEEPSEEK_API_KEY",
     "temperature": 0.3,
     "max_tokens": 4096,
     "throttle_sec": 0,
-    "analysis_concurrency": 1,
-    "enrichment_concurrency": 1
+    "analysis_concurrency": 3,
+    "enrichment_concurrency": 2
   },
   "email": {
-    "enabled": false,
-    "smtp_server": "smtp.qq.com",
-    "smtp_port": 465,
-    "imap_server": "imap.qq.com",
-    "imap_port": 993,
-    "email_address": "xxx@qq.com",
-    "sender_name": "Horizon Daily",
-    "subscribe_keyword": "SUBSCRIBE",
-    "unsubscribe_keyword": "UNSUBSCRIBE"
+    "enabled": false
   },
   "sources": {
     "github": [
-      {
-        "type": "user_events",
-        "username": "torvalds",
-        "enabled": true
-      },
-      {
-        "type": "repo_releases",
-        "owner": "astral-sh",
-        "repo": "uv",
-        "enabled": true
-      }
+      { "type": "user_events", "username": "karpathy", "enabled": true },
+      { "type": "user_events", "username": "ylecun", "enabled": true },
+      { "type": "user_events", "username": "jackiexiao", "enabled": true },
+      { "type": "user_events", "username": "TheBloke", "enabled": true },
+      { "type": "repo_releases", "owner": "deepseek-ai", "repo": "DeepSeek-V3", "enabled": true },
+      { "type": "repo_releases", "owner": "openai", "repo": "openai-python", "enabled": true },
+      { "type": "repo_releases", "owner": "langchain-ai", "repo": "langchain", "enabled": true },
+      { "type": "repo_releases", "owner": "ggml-ai", "repo": "llama.cpp", "enabled": true },
+      { "type": "repo_releases", "owner": "vllm-project", "repo": "vllm", "enabled": true },
+      { "type": "repo_releases", "owner": "astral-sh", "repo": "uv", "enabled": true }
     ],
     "hackernews": {
       "enabled": true,
-      "fetch_top_stories": 20,
-      "min_score": 100
+      "fetch_top_stories": 30,
+      "min_score": 50
     },
     "rss": [
-      {
-        "name": "Simon Willison",
-        "url": "https://simonwillison.net/atom/everything/",
-        "enabled": true,
-        "category": "ai-tools"
-      },
-      {
-        "name": "LWN.net (subscriber full-text)",
-        "url": "https://lwn.net/headlines/full_text?key=${LWN_KEY}",
-        "enabled": false,
-        "category": "linux"
-      }
+      { "name": "Simon Willison", "url": "https://simonwillison.net/atom/everything/", "enabled": true, "category": "ai-tools" },
+      { "name": "量子位", "url": "https://wechat2rss.xlab.app/feed/7131b577c61365cb47e81000738c10d872685908.xml", "enabled": true, "category": "ai-news" },
+      { "name": "新智元", "url": "https://wechat2rss.xlab.app/feed/ede30346413ea70dbef5d485ea5cbb95cca446e7.xml", "enabled": true, "category": "ai-news" },
+      { "name": "GitHub Trending", "url": "https://mshibanami.github.io/GitHubTrendingRSS/daily/all.xml", "enabled": true, "category": "github-trending" },
+      { "name": "The Verge - AI", "url": "https://www.theverge.com/ai-artificial-intelligence/rss/index.xml", "enabled": true, "category": "ai-news" },
+      { "name": "Arstechnica - AI", "url": "https://feeds.arstechnica.com/arstechnica/index", "enabled": true, "category": "tech" },
+      { "name": "Hugging Face Blog", "url": "https://huggingface.co/blog/feed.xml", "enabled": true, "category": "ai-ml" },
+      { "name": "Lil'Log (Lilian Weng)", "url": "https://lilianweng.github.io/feed.xml", "enabled": true, "category": "ai-ml" },
+      { "name": "Stability AI Blog", "url": "https://stability.ai/blog.rss", "enabled": true, "category": "ai-ml" }
     ],
     "reddit": {
       "enabled": true,
       "subreddits": [
-        {
-          "subreddit": "MachineLearning",
-          "enabled": true,
-          "sort": "hot",
-          "time_filter": "day",
-          "fetch_limit": 15,
-          "min_score": 50
-        }
+        { "subreddit": "MachineLearning", "enabled": true, "sort": "hot", "time_filter": "day", "fetch_limit": 20, "min_score": 30 },
+        { "subreddit": "LocalLLaMA", "enabled": true, "sort": "hot", "time_filter": "day", "fetch_limit": 15, "min_score": 30 },
+        { "subreddit": "artificial", "enabled": true, "sort": "hot", "fetch_limit": 15, "min_score": 50 },
+        { "subreddit": "singularity", "enabled": true, "sort": "hot", "fetch_limit": 10, "min_score": 100 },
+        { "subreddit": "OpenAI", "enabled": true, "sort": "hot", "fetch_limit": 15, "min_score": 30 }
       ],
-      "users": [
-        {
-          "username": "iamthatis",
-          "enabled": true,
-          "sort": "new",
-          "fetch_limit": 10
-        }
-      ],
+      "users": [],
       "fetch_comments": 5
     },
     "twitter": {
-      "enabled": false,
-      "users": ["karpathy", "ylecun"],
-      "fetch_limit": 10,
-      "fetch_reply_text": false,
-      "max_replies_per_tweet": 3,
-      "max_tweets_to_expand": 10,
-      "reply_min_likes": 5
+      "enabled": false
     },
-    "openbb": {
-      "enabled": false,
-      "fetch_filings": false,
-      "filings_provider": "sec",
-      "watchlists": [
-        {
-          "name": "megacaps",
-          "enabled": true,
-          "provider": "yfinance",
-          "fetch_limit": 20,
-          "category": "equities",
-          "symbols": ["AAPL", "MSFT", "NVDA", "GOOGL", "AMZN", "META", "TSLA"]
-        }
+    "telegram": {
+      "enabled": true,
+      "channels": [
+        { "channel": "zaihuapd", "enabled": true, "fetch_limit": 20 },
+        { "channel": "AI_News_CN", "enabled": true, "fetch_limit": 20 }
       ]
     },
     "ossinsight": {
-      "enabled": false,
+      "enabled": true,
       "period": "past_24_hours",
-      "languages": ["All", "Python", "TypeScript"],
+      "languages": ["All", "Python", "TypeScript", "Rust"],
       "keywords": [],
       "min_stars": 10,
       "max_items": 30
@@ -114,45 +78,6 @@
     "time_window_hours": 24
   },
   "webhook": {
-    "enabled": false,
-    "url_env": "HORIZON_WEBHOOK_URL",
-    "delivery": "summary",
-    "overview_position": "first",
-    "platform": "generic",
-    "layout": "markdown",
-    "fallback_layout": "markdown",
-    "languages": null,
-    "request_body": {
-      "msg_type": "interactive",
-      "card": {
-        "schema": "2.0",
-        "config": {
-          "wide_screen_mode": true
-        },
-        "header": {
-          "title": {
-            "tag": "plain_text",
-            "content": "#{message_title}"
-          },
-          "template": "blue"
-        },
-        "body": {
-          "elements": [
-            {
-              "tag": "markdown",
-              "content": "Horizon生成结果: #{result}\nHorizon日报重要资讯数量: #{important_items}/#{all_items}"
-            },
-            {
-              "tag": "hr"
-            },
-            {
-              "tag": "markdown",
-              "content": "#{summary}"
-            }
-          ]
-        }
-      }
-    },
-    "headers": ""
+    "enabled": false
   }
 }
